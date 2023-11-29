@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
+ * @author LIN
+ * @date 2023/11/29 14:29
  */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
 
@@ -19,10 +20,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     }
 
     @Override
-    public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
+    protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
-        if (beanDefinition == null) throw new BeansException("No bean named '" + beanName + "' is defined");
+        if (beanDefinition == null){
+            throw new BeansException("No bean named '" + beanName + "' is defined");
+        }
         return beanDefinition;
     }
-
 }
