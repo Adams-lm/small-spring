@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
+ * @author LIN
+ * @date 2023/11/29 14:09
  */
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
@@ -20,5 +21,4 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     protected void addSingleton(String beanName, Object singletonObject) {
         singletonObjects.put(beanName, singletonObject);
     }
-
 }

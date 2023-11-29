@@ -1,7 +1,8 @@
 package cn.bugstack.springframework.beans.factory.config;
 
 /**
- * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
+ * @author LIN
+ * @date 2023/11/29 14:06
  */
 public class BeanDefinition {
 
@@ -11,7 +12,6 @@ public class BeanDefinition {
         this.beanClass = beanClass;
     }
 
-
     public Class getBeanClass() {
         return beanClass;
     }
@@ -19,5 +19,4 @@ public class BeanDefinition {
     public void setBeanClass(Class beanClass) {
         this.beanClass = beanClass;
     }
-
 }
