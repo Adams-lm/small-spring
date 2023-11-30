@@ -1,5 +1,7 @@
 package cn.bugstack.springframework.beans.factory.support;
 
+import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
+
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
