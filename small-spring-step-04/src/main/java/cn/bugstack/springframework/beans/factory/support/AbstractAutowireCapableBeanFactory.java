@@ -1,6 +1,9 @@
 package cn.bugstack.springframework.beans.factory.support;
 
 import cn.bugstack.springframework.beans.BeansException;
+import cn.bugstack.springframework.beans.PropertyValue;
+import cn.bugstack.springframework.beans.PropertyValues;
+import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 import cn.bugstack.springframework.beans.factory.config.BeanReference;
 import cn.hutool.core.bean.BeanUtil;
 
@@ -45,7 +48,21 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      * Bean 属性填充
      */
     protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
-
+        PropertyValues propertyValues = beanDefinition.getPropertyValue();
+        for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+            try {
+                String name = propertyValue.getName();
+                Object value = propertyValue.getValue();
+                if (value instanceof BeanReference){
+                    // A 依赖 B，获取 B 的实例化
+                    BeanReference beanReference = (BeanReference) value;
+                    value = getBean(beanReference.getBeanName());
+                }
+                BeanUtil.setFieldValue(bean, name, value);
+            } catch (Exception e) {
+                throw new BeansException("Error setting property values：" + beanName);
+            }
+        }
     }
 
     public InstantiationStrategy getInstantiationStrategy() {
