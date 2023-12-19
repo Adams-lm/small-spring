@@ -8,7 +8,6 @@ import cn.bugstack.springframework.beans.factory.config.AutowireCapableBeanFacto
 import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 import cn.bugstack.springframework.beans.factory.config.BeanPostProcessor;
 import cn.bugstack.springframework.beans.factory.config.BeanReference;
-import cn.bugstack.springframework.context.ApplicationContextAware;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -106,17 +105,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     private Object initializeBean(String beanName, Object bean, BeanDefinition beanDefinition) {
 
         // invokeAwareMethods
-        if (bean instanceof Aware) {
-            if (bean instanceof BeanFactoryAware) {
-                ((BeanFactoryAware) bean).setBeanFactory(this);
-            }
-            if (bean instanceof BeanClassLoaderAware){
-                ((BeanClassLoaderAware) bean).setBeanClassLoader(getBeanClassLoader());
-            }
-            if (bean instanceof BeanNameAware) {
-                ((BeanNameAware) bean).setBeanName(beanName);
-            }
-        }
+        // if (bean instanceof Aware) {
+        //     if (bean instanceof BeanFactoryAware) {
+        //         ((BeanFactoryAware) bean).setBeanFactory(this);
+        //     }
+        //     if (bean instanceof BeanClassLoaderAware){
+        //         ((BeanClassLoaderAware) bean).setBeanClassLoader(getBeanClassLoader());
+        //     }
+        //     if (bean instanceof BeanNameAware) {
+        //         ((BeanNameAware) bean).setBeanName(beanName);
+        //     }
+        // }
 
         // 1. 执行 BeanPostProcessor Before 处理
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);

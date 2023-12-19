@@ -3,7 +3,6 @@ package cn.bugstack.springframework.test.bean;
 import cn.bugstack.springframework.beans.BeansException;
 import cn.bugstack.springframework.beans.factory.*;
 import cn.bugstack.springframework.context.ApplicationContext;
-import cn.bugstack.springframework.context.ApplicationContextAware;
 
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
