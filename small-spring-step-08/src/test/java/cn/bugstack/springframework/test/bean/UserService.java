@@ -1,8 +1,12 @@
 package cn.bugstack.springframework.test.bean;
 
 import cn.bugstack.springframework.beans.BeansException;
-import cn.bugstack.springframework.beans.factory.*;
+import cn.bugstack.springframework.beans.factory.BeanClassLoaderAware;
+import cn.bugstack.springframework.beans.factory.BeanFactory;
+import cn.bugstack.springframework.beans.factory.BeanFactoryAware;
+import cn.bugstack.springframework.beans.factory.BeanNameAware;
 import cn.bugstack.springframework.context.ApplicationContext;
+import cn.bugstack.springframework.context.ApplicationContextAware;
 
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
@@ -81,5 +85,6 @@ public class UserService implements BeanNameAware, BeanClassLoaderAware, Applica
     public BeanFactory getBeanFactory() {
         return beanFactory;
     }
+
 
 }
