@@ -3,12 +3,16 @@ package cn.bugstack.springframework.beans.factory.support;
 import cn.bugstack.springframework.beans.BeansException;
 import cn.bugstack.springframework.beans.PropertyValue;
 import cn.bugstack.springframework.beans.PropertyValues;
-import cn.bugstack.springframework.beans.factory.*;
+import cn.bugstack.springframework.beans.factory.Aware;
+import cn.bugstack.springframework.beans.factory.BeanClassLoaderAware;
+import cn.bugstack.springframework.beans.factory.BeanFactoryAware;
+import cn.bugstack.springframework.beans.factory.BeanNameAware;
+import cn.bugstack.springframework.beans.factory.DisposableBean;
+import cn.bugstack.springframework.beans.factory.InitializingBean;
 import cn.bugstack.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 import cn.bugstack.springframework.beans.factory.config.BeanPostProcessor;
 import cn.bugstack.springframework.beans.factory.config.BeanReference;
-import cn.bugstack.springframework.context.ApplicationContextAware;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -49,9 +53,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         registerDisposableBeanIfNecessary(beanName, bean, beanDefinition);
 
         // 判断 SCOPE_SINGLETON、SCOPE_PROTOTYPE
-        if (beanDefinition.isSingleton()) {
-            addSingleton(beanName, bean);
-        }
+
         return bean;
     }
 

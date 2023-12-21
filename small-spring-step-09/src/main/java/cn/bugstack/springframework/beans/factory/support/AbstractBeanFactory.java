@@ -1,8 +1,6 @@
 package cn.bugstack.springframework.beans.factory.support;
 
 import cn.bugstack.springframework.beans.BeansException;
-import cn.bugstack.springframework.beans.factory.BeanFactory;
-import cn.bugstack.springframework.beans.factory.FactoryBean;
 import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 import cn.bugstack.springframework.beans.factory.config.BeanPostProcessor;
 import cn.bugstack.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -16,7 +14,7 @@ import java.util.List;
  * <p>
  * BeanDefinition注册表接口
  */
-public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableBeanFactory {
+public abstract class AbstractBeanFactory  implements ConfigurableBeanFactory {
 
     /**
      * ClassLoader to resolve bean class names with, if necessary
@@ -47,28 +45,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
         Object sharedInstance = getSingleton(name);
         if (sharedInstance != null) {
             // 如果是 FactoryBean，则需要调用 FactoryBean#getObject
-            return (T) getObjectForBeanInstance(sharedInstance, name);
         }
 
         BeanDefinition beanDefinition = getBeanDefinition(name);
         Object bean = createBean(name, beanDefinition, args);
-        return (T) getObjectForBeanInstance(bean, name);
     }
 
-    private Object getObjectForBeanInstance(Object beanInstance, String beanName) {
-        if (!(beanInstance instanceof FactoryBean)) {
-            return beanInstance;
-        }
-
-        Object object = getCachedObjectForFactoryBean(beanName);
-
-        if (object == null) {
-            FactoryBean<?> factoryBean = (FactoryBean<?>) beanInstance;
-            object = getObjectFromFactoryBean(factoryBean, beanName);
-        }
-
-        return object;
-    }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
